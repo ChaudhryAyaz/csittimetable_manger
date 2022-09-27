@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         >
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
             style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
             >
         <com.google.android.material.textfield.TextInputEditText
-                android:focusable="false"
+
                 android:id="@+id/class_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,33 +51,32 @@
             android:layout_gravity="center"
             />
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/date_"
-            style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
+            android:hint="@string/date"
+
             >
-        <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
+                android:editable="false"
                 android:id="@+id/date_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/date_dummy"
-                android:text="@string/date_text"
-                android:textColor="#263238"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:editable="false"
-            tools:ignore="Deprecated,RelativeOverlap,TextContrastCheck,TextContrastCheck"
 
-            />
+
+                />
+
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Total Classes"
+            android:hint="@string/total_classes"
             style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
             >
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/totalclass_view"
+                android:textAppearance="@style/TextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_0"
@@ -86,6 +86,15 @@
                 android:editable="false"
                 tools:ignore="Deprecated,RelativeOverlap,TextContrastCheck,TextContrastCheck" />
         </com.google.android.material.textfield.TextInputLayout>
+        <ProgressBar
+            android:id="@+id/progressBar6"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:tooltipText="Please Wait.."
+             />
     </LinearLayout>
     <ListView
         android:padding="2sp"

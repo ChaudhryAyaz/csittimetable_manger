@@ -1,5 +1,4 @@
 package com.ayaz.csittimetableapp
-
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Environment
@@ -20,7 +19,6 @@ import java.io.FileInputStream
 import java.lang.reflect.Type
 import java.util.*
 import kotlin.collections.ArrayList
-
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -33,10 +31,6 @@ class classnamepicker : Fragment() {
     private var param2: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -51,16 +45,11 @@ class classnamepicker : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         classes_names_array = ArrayList()
         classname_listview = view.findViewById(R.id.classes_name_listview)
-        var tempstarting_row = 2
-        var ending = 19
+
+
         var day_name = Calendar.getInstance(TimeZone.getTimeZone("UTC")).get(Calendar.DAY_OF_MONTH)
-
-
-
         var class_detail = arrayOf<String?>()
         var temp_text: String
-
-
         fun classesName (temp_starting_row:Int, ending: Int) {
             var inputStream = FileInputStream(filePath)
             var xlWb = WorkbookFactory.create(inputStream)
@@ -118,7 +107,7 @@ class classnamepicker : Fragment() {
                 class_detail = append(class_detail, temp_class_name)
                 starting_row++
 
-            }
+                                    }
             starting_cell = 7
             starting_row = temp_starting_row
             while (starting_row != ending) {
@@ -143,11 +132,7 @@ class classnamepicker : Fragment() {
             xlWb.close()
         }
 
-
-        try {
-            classes_names_array = getArrayList("aya")
-        }
-        catch (e:Exception)
+        if (day_name == 1 || day_name == 15)
         {
             classesName(2,19)
             classesName(22,39)
@@ -161,7 +146,23 @@ class classnamepicker : Fragment() {
                 classes_names_array.add(user)
             }
         }
-
+        else {
+            try {
+                classes_names_array = getArrayList("aya")
+            } catch (e: Exception) {
+                classesName(2, 19)
+                classesName(22, 39)
+                        classesName(42, 59)
+                classesName(62, 79)
+                classesName(82, 99)
+                class_detail.sort()
+                class_detail = removedubplicate(class_detail)
+                for (i in class_detail.indices) {
+                    val user = class_name_dataType(class_detail[i].toString())
+                    classes_names_array.add(user)
+                }
+            }
+        }
         classname_listview.isClickable = true
         saveArrayList(classes_names_array,"aya")
         classname_listview.adapter = class_names_adapter(requireContext(), classes_names_array)
@@ -177,10 +178,7 @@ class classnamepicker : Fragment() {
             var selectedclass  =  selecteditem2.classes_names.toString()
             class_name_pass.passdata(selectedclass)
         }
-
-
     }
-
     fun saveArrayList(list: ArrayList<class_name_dataType>, key: String?) {
         val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
         val editor: SharedPreferences.Editor = prefs.edit()

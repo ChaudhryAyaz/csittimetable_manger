@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/nav_class_name"
-        android:text="BSCS 6th Self"
+        android:text="Please Select Your Class"
         android:textColor="@color/black"
         style="@style/Heading_text_style" />
     <TextView

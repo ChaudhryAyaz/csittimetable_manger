@@ -115,16 +115,21 @@ class avilable_room : Fragment() {
         {
 
         }
+        val temp_view = view.findViewById<TextView>(R.id.temp)
+        val textView_noclass= view.findViewById<TextView>(R.id.no_room_textview)
         var tempstarting_row = 2
         var ending = 19
         var temp = starting_cell
         var day_name = Calendar.getInstance(TimeZone.getTimeZone("UTC")).get(Calendar.DAY_OF_WEEK)
+        var listviewhead= view.findViewById<ListView>(R.id.listview_head)
         when (day_name) {
             1 -> {
                 index = 0
-
                 tempstarting_row = 2
                 ending = 19
+                temp_view.text = "Today is OFF"
+                temp_view.gravity = CENTER
+                listviewhead.visibility = View.GONE
                 avilableRoomlistview.visibility = View.GONE
             }
             2 -> {
@@ -153,8 +158,13 @@ class avilable_room : Fragment() {
                 index = 0
             }
             7-> {
+
                 index = 0
+                temp_view.text = "Today is OFF"
+                temp_view.gravity = CENTER
+                listviewhead.visibility = View.GONE
                 avilableRoomlistview.visibility = View.GONE
+
             }
             else -> {
                 Toast.makeText(requireContext(), "There is problem Baby $day_name", Toast.LENGTH_SHORT).show()
@@ -188,7 +198,7 @@ class avilable_room : Fragment() {
         val textview_temp = view.findViewById<TextView>(R.id.temp)
         textview_temp.text = "Available Rooms between -> $timefortext"
 
-        var listviewhead= view.findViewById<ListView>(R.id.listview_head)
+
         if(Time_detail.size > 0)
         {
             val toast = Toast.makeText(requireContext(), "The Room Avilable at this time is  ${Time_detail.size}", Toast.LENGTH_LONG)
@@ -202,7 +212,7 @@ class avilable_room : Fragment() {
         }
         if(Time_detail.size == 0)
         {
-            val textView_noclass= view.findViewById<TextView>(R.id.no_room_textview)
+
             textView_noclass.visibility  = View.VISIBLE
             textView_noclass.text = "No Room Avilable between " + (xlWs.getRow(1).getCell(starting_cell).toString())
             listviewhead.visibility = View.GONE
@@ -242,10 +252,7 @@ class avilable_room : Fragment() {
                         val cl_no = xlWs.getRow(starting_row).getCell(1).toString()
                         Time_detail = append(Time_detail, time)
                         Room_number = append(Room_number, cl_no.toString())
-
-
                     }
-
                 }
                 starting_row++
             }

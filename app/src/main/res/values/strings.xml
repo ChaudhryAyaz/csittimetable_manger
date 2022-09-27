@@ -76,6 +76,13 @@
     <string name="gpa_">GPA</string>
     <string name="about_us_fragment">About us Fragment</string>
     <string name="click_on_your_class">Click on Your Class</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="date">Day</string>
+    <string name="title_activity_splash_screen">Splash_screen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 
 </resources>
